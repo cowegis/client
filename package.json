@@ -1,0 +1,56 @@
+{
+  "name": "@cowegis/client",
+  "version": "1.0.0",
+  "description": "Cowegis web client",
+  "main": "index.js",
+  "scripts": {
+    "dev": "./node_modules/.bin/encore dev",
+    "watch": "./node_modules/.bin/encore dev --watch",
+    "build": "./node_modules/.bin/encore production --progress"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cowegis/cowegis.git"
+  },
+  "keywords": [
+    "Cowegis",
+    "Leaflet",
+    "Maps",
+    "OSM"
+  ],
+  "author": "netzmacht David Molineus",
+  "license": "LGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/cowegis/cowegis/issues"
+  },
+  "homepage": "https://github.com/cowegis/cowegis#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.28",
+    "@fortawesome/free-brands-svg-icons": "^5.13.0",
+    "@fortawesome/free-regular-svg-icons": "^5.13.0",
+    "@fortawesome/free-solid-svg-icons": "^5.13.0",
+    "@geoman-io/leaflet-geoman-free": "^2.5.0",
+    "@mapbox/maki": "^6.2.0",
+    "@mapbox/togeojson": "^0.16.0",
+    "@raruto/leaflet-gesture-handling": "^1.2.6",
+    "fs": "0.0.1-security",
+    "leaflet": "^1.6.0",
+    "leaflet-control-geocoder": "^1.13.0",
+    "leaflet-loading": "^0.1.24",
+    "leaflet-providers": "^1.10.1",
+    "leaflet.fullscreen": "^1.6.0",
+    "leaflet.markercluster": "^1.4.1",
+    "leaflet.markercluster.layersupport": "^2.0.1",
+    "osmtogeojson": "^3.0.0-beta.4",
+    "spin.js": "^4.1.0",
+    "topojson-client": "^3.1.0",
+    "wellknown": "^0.5.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.9.6",
+    "@symfony/webpack-encore": "^0.30.2",
+    "autoprefixer": "^9.8.0",
+    "postcss-loader": "^3.0.0",
+    "svg-inline-loader": "^0.8.2"
+  }
+}
