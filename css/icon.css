@@ -1,0 +1,30 @@
+
+.cowegis-marker-pin path {
+    stroke: #00214b;
+    stroke-opacity: 1;
+    stroke-width: 0.4;
+}
+
+.cowegis-marker-pin {
+    color: #80c22a;
+}
+
+.cowegis-marker-icon {
+    position: absolute;
+    top: 15%;
+    left: 0;
+    transform: translateX(50%);
+    color: #fff;
+    margin: auto;
+    display: inline-block;
+    font-size: 14px;
+}
+
+.cowegis-marker-content {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 15%;
+    left: 0;
+    color: rgb(13, 88, 107)
+}
