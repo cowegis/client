@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.9.6",
-    "@symfony/webpack-encore": "^0.30.2",
+    "@symfony/webpack-encore": "^0.31.0",
     "autoprefixer": "^9.8.0",
     "postcss-loader": "^3.0.0",
     "svg-inline-loader": "^0.8.2"
