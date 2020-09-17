@@ -44,7 +44,7 @@ class MapFactory {
             element.map.locate(config.locate === true ? {} : config.locate);
         }
 
-        if (config.bounds.adjustAfterLoad) {
+        if (config.bounds && config.bounds.adjustAfterLoad) {
             const calculateBoundsListener = function () {
                 this._calculateBounds(element);
                 element.removeEventListener('cowegis:ready', calculateBoundsListener);
