@@ -1,6 +1,11 @@
 import MapElement from './element/MapElement';
 import EditorElement from "./element/EditorElement";
 
+import layerTypes from './layer';
+import controlTypes from './control';
+import iconTypes from './icon';
+import {mapFactory} from './factory';
+
 import 'leaflet/dist/leaflet.css';
 import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
 import 'leaflet-control-geocoder/Control.Geocoder.css';
@@ -15,3 +20,5 @@ import '../css/icon.css';
 
 customElements.define('cowegis-map', MapElement);
 customElements.define('cowegis-editor', EditorElement);
+
+export { layerTypes, iconTypes, controlTypes, mapFactory};
