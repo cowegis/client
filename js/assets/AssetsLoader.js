@@ -18,7 +18,13 @@ class AssetsLoader {
 
             case 'callbacks':
                 return import(/* webpackIgnore: true */ asset.url).then(function (callbacks) {
-                    this.element.listeners[asset.identifier] = callbacks.default;
+                    if (callbacks !== undefined && callbacks.default) {
+                        this.element.listeners[asset.identifier] = callbacks.default;
+                    } else if (window[asset.identifier] !== undefined) {
+                        this.element.listeners[asset.identifier] = window[asset.identifier];
+                    } else {
+                        throw new Error('Could not load callbacks.');
+                    }
                 }.bind(this));
 
             case 'component':
