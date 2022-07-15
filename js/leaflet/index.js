@@ -1,6 +1,7 @@
 import leaflet from 'leaflet';
-import "@raruto/leaflet-gesture-handling";
-import { ATTRIBUTION} from "../config";
+
+import '@raruto/leaflet-gesture-handling';
+import { ATTRIBUTION} from '../config';
 
 /* This code is needed to properly load the images in the Leaflet CSS */
 delete leaflet.Icon.Default.prototype._getIconUrl;

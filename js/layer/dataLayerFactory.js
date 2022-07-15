@@ -1,9 +1,9 @@
-import leaflet from '../leaflet';
-import pointToLayer from "../geojson/pointToLayer";
+import {mapFactory} from '../factory';
 import {determineListener} from '../factory/bindEvents';
-import preloadAssets from "../factory/preloadAssets";
-import GeoJSON from "../geojson";
-import {mapFactory} from "../factory";
+import preloadAssets from '../factory/preloadAssets';
+import {from} from '../geojson';
+import pointToLayer from '../geojson/pointToLayer';
+import leaflet from '../leaflet';
 
 function boundsListener(layer, map) {
     if (!layer.options.adjustBounds) {
@@ -57,7 +57,7 @@ export default async function (config, element) {
             throw new Error(`Unknown data type "${config.data.type}"`);
     }
 
-    data = GeoJSON.from(config.data.format, data);
+    data = from(config.data.format, data);
 
     // TODO: Implement a better way for preprocessing geojson data
     if (data.features) {

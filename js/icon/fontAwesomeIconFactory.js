@@ -1,5 +1,6 @@
-import FontAwesomeIcon from "./FontAwesomeIcon";
-import {Util} from "leaflet";
+import {Util} from 'leaflet';
+
+import FontAwesomeIcon from './FontAwesomeIcon';
 
 const attribution = '<a href="https://fontawesome.com/" target="_blank" rel="nofollow noopener" title="Font Awesome Free Icons by Fonticons Inc.">Font Awesome</a>';
 

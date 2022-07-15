@@ -13,7 +13,21 @@ class Registry {
             return this.factories[name];
         }
 
-        throw 'Type "' + name + " not found";
+        if (this.builtIn.hasOwnProperty(name)) {
+            const type   = this.builtIn[name];
+            const module = await import(/* webpackChunkName: "[request]" */ `${type}`);
+
+            return this._register(name, module);
+        }
+
+        if (this.loaders.hasOwnProperty(name)) {
+            const loader = this.loaders[name];
+            const module = await import(/* webpackIgnore: true */ `${loader}`);
+
+            return this._register(name, module);
+        }
+
+        throw 'Type "' + name + ' not found';
     }
 }
 

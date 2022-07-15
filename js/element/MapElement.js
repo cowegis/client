@@ -1,6 +1,6 @@
+import AssetsLoader from '../assets/AssetsLoader';
+import { mapFactory } from '../factory';
 import L from '../leaflet';
-import AssetsLoader from "../assets/AssetsLoader";
-import { mapFactory } from "../factory";
 
 const template = `
     <div class="cowegis-map-container" style="height: 100%"></div>

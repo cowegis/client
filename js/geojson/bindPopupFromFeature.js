@@ -1,4 +1,4 @@
-import bindEvents from "../factory/bindEvents";
+import bindEvents from '../factory/bindEvents';
 
 export default function (object, feature, element) {
     if (!feature.properties || !feature.properties.popup) {

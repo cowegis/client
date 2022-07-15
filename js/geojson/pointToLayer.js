@@ -1,6 +1,7 @@
-import bindEvents from "../factory/bindEvents";
-import bindPopupFromFeature from "./bindPopupFromFeature";
-import bindTooltipFromFeature from "./bindTooltipFromFeature";
+import bindEvents from '../factory/bindEvents';
+
+import bindPopupFromFeature from './bindPopupFromFeature';
+import bindTooltipFromFeature from './bindTooltipFromFeature';
 
 export default function (feature, latlng, element) {
     let type   = 'marker';

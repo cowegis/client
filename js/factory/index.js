@@ -1,4 +1,4 @@
-import MapFactory from "./MapFactory";
+import MapFactory from './MapFactory';
 
 export const mapFactory = new MapFactory();
 

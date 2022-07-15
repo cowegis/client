@@ -16,7 +16,7 @@ export default async function(config, element) {
             width: 3,
             radius: 4,
             rotate: 13,
-            top: "50%"
+            top: '50%'
         }
     }
     if (config.options.spinjs && global.Spinner === undefined) {

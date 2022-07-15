@@ -1,5 +1,6 @@
-import { icon, findIconDefinition, library } from "@fortawesome/fontawesome-svg-core";
-import SvgIcon from "./SvgIcon";
+import { icon, findIconDefinition, library } from '@fortawesome/fontawesome-svg-core';
+
+import SvgIcon from './SvgIcon';
 
 const prefixes = {
     solid: 'fas',

@@ -1,5 +1,6 @@
+import osmtogeojson from 'osmtogeojson';
+
 import leaflet from '../leaflet';
-import osmtogeojson from "osmtogeojson";
 
 /**
  * Get the bounds as overpass bbox string.
@@ -10,7 +11,7 @@ function toOverpassBBoxString (LatLngBounds) {
     var a = LatLngBounds._southWest,
         b = LatLngBounds._northEast;
 
-    return [a.lat, a.lng, b.lat, b.lng].join(",");
+    return [a.lat, a.lng, b.lat, b.lng].join(',');
 }
 
 /**
@@ -57,7 +58,7 @@ export default leaflet.FeatureGroup.extend({
 
         var bounds = toOverpassBBoxString(this._map.getBounds());
         var query  = this.options.query.replace(/(BBOX)/g, bounds);
-        var url    = this.options.endpoint + "interpreter?data=[out:json];" + query;
+        var url    = this.options.endpoint + 'interpreter?data=[out:json];' + query;
 
         this._map.fire('dataloading', {layer: this});
 

@@ -1,10 +1,9 @@
-import MapElement from './element/MapElement';
-import EditorElement from "./element/EditorElement";
-
-import layerTypes from './layer';
 import controlTypes from './control';
-import iconTypes from './icon';
+import EditorElement from './element/EditorElement';
+import MapElement from './element/MapElement';
 import {mapFactory} from './factory';
+import iconTypes from './icon';
+import layerTypes from './layer';
 
 import 'leaflet/dist/leaflet.css';
 import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';

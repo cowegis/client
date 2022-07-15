@@ -1,5 +1,6 @@
-import SvgIcon from "./SvgIcon";
-import {Util} from "leaflet";
+import {Util} from 'leaflet';
+
+import SvgIcon from './SvgIcon';
 
 export default function(config, properties, element) {
     const options = Util.extend({}, config.options);

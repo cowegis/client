@@ -1,5 +1,5 @@
-import { feature as parseTopoJsonFeature } from "topojson-client";
 import toGeoJSON from '@mapbox/togeojson';
+import { feature as parseTopoJsonFeature } from 'topojson-client';
 import wellknown from 'wellknown';
 
 function parseXml(str) {

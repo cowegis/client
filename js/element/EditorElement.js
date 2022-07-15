@@ -1,4 +1,4 @@
-import MapElement from "./MapElement";
+import MapElement from './MapElement';
 
 export default class EditorElement extends MapElement {
     constructor() {

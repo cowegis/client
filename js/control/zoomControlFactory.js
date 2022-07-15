@@ -1,4 +1,4 @@
-import leaflet from "../leaflet";
+import leaflet from '../leaflet';
 
 export default async function(config, element) {
     const control = leaflet.control.zoom(config.options);

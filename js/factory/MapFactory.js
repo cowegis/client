@@ -1,9 +1,11 @@
+import {LatLngBounds} from 'leaflet';
+
 import controlTypes from '../control';
-import layerTypes from '../layer';
 import iconTypes from '../icon';
-import bindEvents from "./bindEvents";
-import preloadAssets from "./preloadAssets";
-import {LatLngBounds} from "leaflet";
+import layerTypes from '../layer';
+
+import bindEvents from './bindEvents';
+import preloadAssets from './preloadAssets';
 
 class MapFactory {
     constructor() {

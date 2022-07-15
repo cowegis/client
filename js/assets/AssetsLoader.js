@@ -1,5 +1,5 @@
-import layerTypes from '../layer';
 import controlTypes from '../control';
+import layerTypes from '../layer';
 
 class AssetsLoader {
     constructor(element) {
