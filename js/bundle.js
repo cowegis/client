@@ -1,25 +1,22 @@
 import {layerTypes, iconTypes, controlTypes, mapFactory} from './client';
-
-import dataLayerFactory from './layer/dataLayerFactory';
-import featureGroupFactory from "./layer/featureGroupFactory";
-import layerGroupFactory from "./layer/layerGroupFactory";
-import markerClusterGroupFactory from "./layer/markerClusterGroupFactory";
-import overpassLayerFactory from "./layer/overpassLayerFactory";
-import providerLayerFactory from './layer/providerLayerFactory';
-import tileLayerFactory from './layer/tileLayerFactory';
-
-import attributionControlFactory from "./control/attributionControlFactory";
+import attributionControlFactory from './control/attributionControlFactory';
 import fullscreenControlFactory from './control/fullscreenControlFactory';
-import geocoderControlFactory from "./control/geocoderControlFactory";
-import layersControlFactory from "./control/layersControlFactory";
+import geocoderControlFactory from './control/geocoderControlFactory';
+import layersControlFactory from './control/layersControlFactory';
 import loadingControlFactory from './control/loadingControlFactory';
 import scaleControlFactory from './control/scaleControlFactory';
 import zoomControlFactory from './control/zoomControlFactory';
-
-import divIconFactory from "./icon/divIconFactory";
-import fontAwesomeIconFactory from "./icon/fontAwesomeIconFactory";
+import divIconFactory from './icon/divIconFactory';
+import fontAwesomeIconFactory from './icon/fontAwesomeIconFactory';
 import imageIconFactory from './icon/imageIconFactory';
-import svgIconFactory from "./icon/svgIconFactory";
+import svgIconFactory from './icon/svgIconFactory';
+import dataLayerFactory from './layer/dataLayerFactory';
+import featureGroupFactory from './layer/featureGroupFactory';
+import layerGroupFactory from './layer/layerGroupFactory';
+import markerClusterGroupFactory from './layer/markerClusterGroupFactory';
+import overpassLayerFactory from './layer/overpassLayerFactory';
+import providerLayerFactory from './layer/providerLayerFactory';
+import tileLayerFactory from './layer/tileLayerFactory';
 
 layerTypes.register('data', dataLayerFactory);
 layerTypes.register('featureGroup', featureGroupFactory);
