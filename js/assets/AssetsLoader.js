@@ -29,16 +29,19 @@ class AssetsLoader {
 
             case 'component':
                 return import(/* webpackIgnore: true */ asset.url).then(function (component) {
-                    console.log(component);
-                    // TODO: Rework, for plugins
-                    // if (component instanceof LayerType) {
-                    //     this.layerTypes.register(component.name(), component);
-                    // } else if (component instanceof ControlType) {
-                    //     this.controlTypes.register(component.name(), component)
-                    // } else {
-                    //     throw new Error('Unknown component provided');
-                    // }
-                });
+                    switch (component.type) {
+                        case 'layer':
+                            this.layerTypes.register(component.name, component.factory);
+                            break;
+
+                        case 'control':
+                            this.controlTypes.register(component.name, component.factory);
+                            break;
+
+                        default:
+                            throw new Error('Unsupported component provided');
+                    }
+                }.bind(this));
 
             default:
                 throw new Error('Unsupported asset type ' + asset.type);
