@@ -7,7 +7,7 @@ import layerTypes from './layer';
 
 import 'leaflet/dist/leaflet.css';
 import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
-import 'leaflet-control-geocoder/Control.Geocoder.css';
+import 'leaflet-control-geocoder/dist/Control.Geocoder.css';
 import 'leaflet.fullscreen/Control.FullScreen.css';
 import 'leaflet-loading/src/Control.Loading.css';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
