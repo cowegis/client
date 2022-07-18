@@ -32,7 +32,7 @@ class MapFactory {
 
         element.map = element.leaflet.map(element.container, config.options);
 
-        config.panes.forEach((pane) => promises.push(this.createPane(pane, element)));
+        config.panes.forEach((pane) => this.createPane(pane, element));
         config.layers.forEach((layer) => promises.push(this.createLayer(layer, element)));
         config.controls.forEach((config) => promises.push(this.createControl(config, element)));
 
