@@ -126,20 +126,6 @@ class MapFactory {
     registerListeners(config, element) {
         bindEvents(element.map, config.events, element);
     }
-
-    getListener(element, reference)
-    {
-        if (reference.namespace === null) {
-            return element.listeners[reference.reference];
-        }
-
-        let listeners = element.listeners;
-        reference.namespace.forEach(function (part) {
-            listeners = listeners[part];
-        });
-
-        return listeners[reference.reference];
-    }
 }
 
 export default MapFactory;
