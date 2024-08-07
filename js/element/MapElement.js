@@ -94,7 +94,26 @@ class MapElement extends HTMLElement {
             return;
         }
 
-        this.observeConfig(this.container);
+        let configLoaded = false;
+
+        this.childNodes.forEach(function (node) {
+            if (!(node instanceof HTMLScriptElement)) {
+                return;
+            }
+
+            if (node.getAttribute('type') !== 'application/vnd.cowegis.map+json') {
+                return;
+            }
+
+            this.config = JSON.parse(node.innerText);
+            configLoaded = true;
+        }.bind(this));
+
+        if (configLoaded) {
+            return;
+        }
+
+        this.observeConfig();
     }
 
     observeConfig() {
