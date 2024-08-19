@@ -10,7 +10,7 @@ export default class EditorElement extends MapElement {
             this.style.display = 'block';
         }
 
-        await import(/* webpackChunkName: "geoman-free" */ '@geoman-io/leaflet-geoman-free');
+        await import('@geoman-io/leaflet-geoman-free');
 
         return super.connectedCallback();
     }

@@ -46,6 +46,16 @@ class MapFactory {
             element.map.locate(config.locate === true ? {} : config.locate);
         }
 
+        if (config.editor && element.map.pm) {
+            if (config.editor.toolbar) {
+                element.map.pm.addControls(config.editor.toolbar);
+            }
+
+            if (config.editor.language) {
+                element.map.pm.setLang(config.editor.language);
+            }
+        }
+
         if (config.bounds && config.bounds.adjustAfterLoad) {
             const calculateBoundsListener = function () {
                 this._calculateBounds(element);
