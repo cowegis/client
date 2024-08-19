@@ -20,7 +20,7 @@ export default async function(config, element) {
         }
     }
     if (config.options.spinjs && global.Spinner === undefined) {
-      await import(/* webpackChunkName: "spin" */ 'spin.js').then(
+      await import('spin.js').then(
           (module) => global.Spinner = module.Spinner
       );
     }
