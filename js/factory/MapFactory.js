@@ -36,6 +36,8 @@ class MapFactory {
         config.layers.forEach((layer) => promises.push(this.createLayer(layer, element)));
         config.controls.forEach((config) => promises.push(this.createControl(config, element)));
 
+        promises.push(this.configureEditor(config.editor, element));
+
         this.registerListeners(config, element);
 
         if (config.view) {
@@ -44,16 +46,6 @@ class MapFactory {
 
         if (config.locate) {
             element.map.locate(config.locate === true ? {} : config.locate);
-        }
-
-        if (config.editor && element.map.pm) {
-            if (config.editor.toolbar) {
-                element.map.pm.addControls(config.editor.toolbar);
-            }
-
-            if (config.editor.language) {
-                element.map.pm.setLang(config.editor.language);
-            }
         }
 
         if (config.bounds && config.bounds.adjustAfterLoad) {
@@ -131,6 +123,20 @@ class MapFactory {
         return this.iconTypes.get(config.type).then(async function (factory) {
             return factory(config, properties, element);
         });
+    }
+
+    async configureEditor(config, element){
+        if (! config || !element.map.pm) {
+            return;
+        }
+
+        if (config.toolbar) {
+            element.map.pm.addControls(config.toolbar);
+        }
+
+        if (config.language) {
+            element.map.pm.setLang(config.language);
+        }
     }
 
     registerListeners(config, element) {
