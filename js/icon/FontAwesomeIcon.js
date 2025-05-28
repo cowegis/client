@@ -26,7 +26,7 @@ export default SvgIcon.extend({
         const iconSet  = options.iconSet;
         const iconName = determineIconModuleName(options.icon);
 
-        import(/* webpackChunkName: "font-awesome/[request]" */ `@fortawesome/free-${iconSet}-svg-icons/${iconName}.js`).then(function (module) {
+        import(`@fortawesome/free-${iconSet}-svg-icons/${iconName}.js`).then(function (module) {
             library.add(module[iconName]);
 
             const definition = findIconDefinition({ prefix: prefixes[iconSet], iconName: options.icon});
