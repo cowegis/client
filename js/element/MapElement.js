@@ -13,7 +13,7 @@ class MapElement extends HTMLElement {
         this.attachShadow({mode: 'open'});
         this.shadowRoot.innerHTML = template;
         this._leaflet = L;
-        this._container = this.shadowRoot.querySelector('.cowegis-map-container');;
+        this._container = this.shadowRoot.querySelector('.cowegis-map-container');
         this._map = null;
         this._layers = {};
         this._controls = {};
@@ -21,6 +21,7 @@ class MapElement extends HTMLElement {
         this._listeners = {};
         this._config = {};
         this._assets = new AssetsLoader(this);
+        this._connected = false;
     }
 
     get container() {
@@ -41,9 +42,11 @@ class MapElement extends HTMLElement {
         this._listeners = {};
         this._config = this._prepareConfig(config);
 
-        mapFactory.create(this).then(function () {
-            this.dispatchEvent(new CustomEvent('cowegis:ready', {bubbles: true, detail: {element: this}}));
-        }.bind(this));
+        if (this._connected) {
+            this._createMap();
+        } else {
+            this.addEventListener('cowegis:connected', this._createMap.bind(this));
+        }
     }
 
     get leaflet() {
@@ -89,6 +92,7 @@ class MapElement extends HTMLElement {
 
             config.then(function (config) {
                 this.config = config;
+                this._setConnected();
             }.bind(this));
 
             return;
@@ -108,6 +112,8 @@ class MapElement extends HTMLElement {
             this.config = JSON.parse(node.innerText);
             configLoaded = true;
         }.bind(this));
+
+        this._setConnected();
 
         if (configLoaded) {
             return;
@@ -162,6 +168,17 @@ class MapElement extends HTMLElement {
         );
 
         return config;
+    }
+
+    _createMap() {
+        mapFactory.create(this).then(function () {
+            this.dispatchEvent(new CustomEvent('cowegis:ready', {bubbles: true, detail: {element: this}}));
+        }.bind(this));
+    }
+
+    _setConnected() {
+        this._connected = true;
+        this.dispatchEvent(new CustomEvent('cowegis:connected', {bubbles: true, detail: {element: this}}));
     }
 }
 
