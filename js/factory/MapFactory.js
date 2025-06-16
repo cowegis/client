@@ -40,7 +40,7 @@ class MapFactory {
 
         this.registerListeners(config, element);
 
-        if (config.view) {
+        if (config.view && config.view.center) {
             element.map.setView(config.view.center, config.view.zoom, config.view.zoomOptions);
         }
 
