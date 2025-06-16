@@ -1,6 +1,7 @@
 import osmtogeojson from 'osmtogeojson';
 
 import leaflet from '../leaflet';
+import {mapFactory} from "../factory";
 
 /**
  * Get the bounds as overpass bbox string.
@@ -30,7 +31,7 @@ export default leaflet.FeatureGroup.extend({
      *
      * @param options
      */
-    initialize: function (options) {
+    initialize: function (options, element) {
         if (!options.pointToLayer) {
             options.pointToLayer = this.pointToLayer;
         }
@@ -43,6 +44,7 @@ export default leaflet.FeatureGroup.extend({
 
         this._layer  = leaflet.geoJson();
         this._layers = {};
+        this._element = element;
 
         this.addLayer(this._layer);
     },
@@ -78,7 +80,7 @@ export default leaflet.FeatureGroup.extend({
                 var bounds = this._map.getBounds();
                 bounds     = bounds.extend(layer.getBounds());
 
-                this._map.fitBounds(bounds, this._map.getBoundsOptions());
+                //this._map.fitBounds(bounds, this._map.getBoundsOptions());
             }
 
             this._map.fire('dataload', {layer: this});
@@ -104,20 +106,18 @@ export default leaflet.FeatureGroup.extend({
                 marker.setRadius(feature.properties.radius);
             }
 
-            // TODO: Icon handling
             if (feature.properties.icon) {
-                icon = this._map.getIcon(feature.properties.icon);
-
-            } else if (feature.properties.tags
-                && feature.properties.tags.amenity
-                && this.options.amenityIcons[feature.properties.tags.amenity]
-            ) {
-                //icon = L.contao.getIcon(this.options.amenityIcons[feature.properties.tags.amenity]);
+                icon = feature.properties.icon;
+            } else if (feature.properties.amenity) {
+                icon = this.options.amenityIcons[feature.properties.amenity] || undefined;
             }
 
-            // TODO: Icon handling
-            if (icon) {
-                marker.setIcon(icon);
+            if (icon && this._element.config.map.presets.icons[icon]) {
+                mapFactory.createIcon(
+                    this._element.config.map.presets.icons[icon],
+                    feature.properties,
+                    this._element
+                ).then(icon => marker.setIcon(icon));
             }
         }
 
