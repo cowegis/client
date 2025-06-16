@@ -58,7 +58,7 @@ export default leaflet.FeatureGroup.extend({
 
         var bounds = toOverpassBBoxString(this._map.getBounds());
         var query  = this.options.query.replace(/(BBOX)/g, bounds);
-        var url    = this.options.endpoint + 'interpreter?data=[out:json];' + query;
+        var url    = this.options.endpoint + 'interpreter?data=' + encodeURIComponent('[out:json];' + query);
 
         this._map.fire('dataloading', {layer: this});
 
@@ -74,7 +74,7 @@ export default leaflet.FeatureGroup.extend({
             this.removeLayer(this._layer);
             this._layer = layer;
 
-            if (this.options.boundsMode === 'extend' && layer.getBounds().isValid()) {
+            if (this.options.adjustBounds && layer.getBounds().isValid()) {
                 var bounds = this._map.getBounds();
                 bounds     = bounds.extend(layer.getBounds());
 
@@ -88,8 +88,9 @@ export default leaflet.FeatureGroup.extend({
      * @param map
      */
     onAdd: function (map) {
-        // TODO: Make it configurable
-        map.on('moveend', this.refreshData, this);
+        if (this.options.dynamicLoad) {
+            map.on('moveend', this.refreshData, this);
+        }
 
         this.refreshData();
     },
