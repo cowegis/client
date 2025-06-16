@@ -40,7 +40,7 @@ export default leaflet.FeatureGroup.extend({
         }
 
         leaflet.Util.setOptions(this, options);
-        this.options.dynamicLoad = !!this.options.query.match(/BBOX/g);
+        this.options.dynamicLoad = !this.options.adjustBounds && !!this.options.query.match(/BBOX/g);
 
         this._layer  = leaflet.geoJson();
         this._layers = {};
@@ -78,9 +78,7 @@ export default leaflet.FeatureGroup.extend({
 
             if (this.options.adjustBounds && layer.getBounds().isValid()) {
                 var bounds = this._map.getBounds();
-                bounds     = bounds.extend(layer.getBounds());
-
-                //this._map.fitBounds(bounds, this._map.getBoundsOptions());
+                this._map.fitBounds(bounds.extend(layer.getBounds()));
             }
 
             this._map.fire('dataload', {layer: this});
