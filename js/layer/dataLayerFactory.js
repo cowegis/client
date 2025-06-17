@@ -83,6 +83,10 @@ export default async function (config, element) {
         ? determineListener(config.options.pointToLayer, element)
         : pointToLayer;
 
+    if (config.options.onEachFeature) {
+        config.options.onEachFeature = determineListener(config.options.onEachFeature, element);
+    }
+
     config.options.pointToLayer = (feature, latlng) => pointToLayerCallback(feature, latlng, element, pointToLayer);
 
     const layer = leaflet.geoJSON(data, config.options);

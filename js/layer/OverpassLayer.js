@@ -2,6 +2,8 @@ import osmtogeojson from 'osmtogeojson';
 
 import leaflet from '../leaflet';
 import {mapFactory} from "../factory";
+import {determineListener} from "../factory/bindEvents";
+import pointToLayer from "../geojson/pointToLayer";
 
 /**
  * Get the bounds as overpass bbox string.
@@ -32,12 +34,13 @@ export default leaflet.FeatureGroup.extend({
      * @param options
      */
     initialize: function (options, element) {
-        if (!options.pointToLayer) {
-            options.pointToLayer = this.pointToLayer;
-        }
-        if (!options.onEachFeature) {
-            options.onEachFeature = this.onEachFeature;
-        }
+        options.pointToLayer = options.pointToLayer
+            ? determineListener(options.pointToLayer, element)
+            : this.pointToLayer;
+
+        options.onEachFeature = options.onEachFeature
+            ? determineListener(options.onEachFeature, element)
+            : this.onEachFeature;
 
         leaflet.Util.setOptions(this, options);
         this.options.dynamicLoad = !this.options.adjustBounds && !!this.options.query.match(/BBOX/g);
