@@ -26,7 +26,12 @@ export default SvgIcon.extend({
         const iconSet  = options.iconSet;
         const iconName = determineIconModuleName(options.icon);
 
-        import(`@fortawesome/free-${iconSet}-svg-icons/${iconName}.js`).then(function (module) {
+        // The specifier matches the package exports ("./*": "./*.js"). webpackInclude limits webpack's context
+        // module to the icon files, otherwise type definitions and index files would be bundled as well.
+        import(
+            /* webpackInclude: /\/fa[A-Z][A-Za-z0-9]*\.js$/ */
+            `@fortawesome/free-${iconSet}-svg-icons/${iconName}`
+        ).then(function (module) {
             library.add(module[iconName]);
 
             const definition = findIconDefinition({ prefix: prefixes[iconSet], iconName: options.icon});
