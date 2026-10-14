@@ -99,19 +99,6 @@ describe('dataLayerFactory', () => {
             return bounds;
         }
 
-        it('only listens for bounds calculation while on the map', async () => {
-            const element = createElement();
-            const layer = await boundsLayer(element);
-
-            expect(element.map.listens('cowegis:calculate-bounds')).toBe(false);
-
-            element.map.addLayer(layer);
-            expect(element.map.listens('cowegis:calculate-bounds')).toBe(true);
-
-            element.map.removeLayer(layer);
-            expect(element.map.listens('cowegis:calculate-bounds')).toBe(false);
-        });
-
         it('contributes its features to the map bounds', async () => {
             const element = createElement();
             element.map.addLayer(await boundsLayer(element));
@@ -131,6 +118,16 @@ describe('dataLayerFactory', () => {
             await boundsLayer(element);
 
             expect(calculateBounds(element).isValid()).toBe(false);
+        });
+
+        it('contributes to the bounds of a map without a view', async () => {
+            const element = createElement();
+            element.map = leaflet.map(document.createElement('div'));
+            element.map.addLayer(await boundsLayer(element));
+
+            const bounds = calculateBounds(element);
+            expect(bounds.isValid()).toBe(true);
+            expect(bounds.contains([20, 10])).toBe(true);
         });
 
         it('stops contributing after being removed', async () => {
