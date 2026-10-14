@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.8] - 2026-10-14
+
+### Fixed
+
+- Maps without a configured center stayed blank if their view should be adjusted to the bounds of the data layers
+  (`bounds.adjustAfterLoad`). Leaflet fires the `add` event of a layer only after the map has a view, so the bounds
+  listener registered in 1.0.7 never contributed. Data layers now check if they are on the map when the bounds are
+  calculated.
+
 ## [1.0.7] - 2026-10-14
 
 ### Added
@@ -37,4 +46,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - The `moveend` listener is removed together with the layer.
   - Failed requests end the loading state and are logged.
 
+[1.0.8]: https://github.com/cowegis/client/compare/1.0.7...1.0.8
 [1.0.7]: https://github.com/cowegis/client/compare/1.0.6...1.0.7
