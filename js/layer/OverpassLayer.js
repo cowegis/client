@@ -64,10 +64,18 @@ export default leaflet.FeatureGroup.extend({
         var query  = this.options.query.replace(/(BBOX)/g, bounds);
         var url    = this.options.endpoint + 'interpreter?data=' + encodeURIComponent('[out:json];' + query);
 
-        this._map.fire('dataloading', {layer: this});
+        var map    = this._map;
+
+        map.fire('dataloading', {layer: this});
 
         fetch(url).then(async function (response) {
             var data     = await response.json();
+
+            // The layer might have been removed from the map while the request was pending.
+            if (!this._map) {
+                map.fire('dataload', {layer: this});
+                return;
+            }
             var features = osmtogeojson(data);
             var layer    = leaflet.geoJson(features, {
                 pointToLayer: this.options.pointToLayer.bind(this),
@@ -96,13 +104,21 @@ export default leaflet.FeatureGroup.extend({
 
         this.refreshData();
     },
+    /**
+     * @param map
+     */
+    onRemove: function (map) {
+        map.off('moveend', this.refreshData, this);
+
+        leaflet.FeatureGroup.prototype.onRemove.call(this, map);
+    },
     pointToLayer: function (feature, latlng) {
         var type   = 'marker';
         var icon   = null;
         var marker = leaflet.marker(latlng, feature.properties.options);
 
         if (feature.properties) {
-            if (feature.properties.radius) {
+            if (feature.properties.radius && marker.setRadius) {
                 marker.setRadius(feature.properties.radius);
             }
 
