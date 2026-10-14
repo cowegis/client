@@ -16,6 +16,7 @@ import '@raruto/leaflet-gesture-handling/dist/leaflet-gesture-handling.css';
 import 'spin.js/spin.css';
 import '../css/loading.css';
 import '../css/icon.css';
+import '../css/fullscreen.css';
 
 customElements.define('cowegis-map', MapElement);
 customElements.define('cowegis-editor', EditorElement);
