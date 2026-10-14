@@ -1,6 +1,6 @@
 {
   "name": "@cowegis/client",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Cowegis web client",
   "main": "js/client.js",
   "repository": {

@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.9] - 2026-10-14
+
+### Fixed
+
+- The icons of the fullscreen control were missing. `leaflet.fullscreen` 5 defines them as custom properties on
+  `:root`, which does not match inside the shadow DOM of the map element. They are now defined on `:host` as well.
+- The zoom out button kept the rounded bottom corners if further buttons, e.g. of the fullscreen control, were added
+  to the zoom control after the loading control. Only the last visible button is marked as bottom button now.
+
 ## [1.0.8] - 2026-10-14
 
 ### Fixed
@@ -46,5 +55,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - The `moveend` listener is removed together with the layer.
   - Failed requests end the loading state and are logged.
 
+[1.0.9]: https://github.com/cowegis/client/compare/1.0.8...1.0.9
 [1.0.8]: https://github.com/cowegis/client/compare/1.0.7...1.0.8
 [1.0.7]: https://github.com/cowegis/client/compare/1.0.6...1.0.7
