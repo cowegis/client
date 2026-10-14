@@ -1,0 +1,23 @@
+{
+  "map": {
+    "options": {},
+    "view": { "center": [52, 13], "zoom": 8 },
+    "panes": [{ "paneId": "p1", "name": "custom", "zIndex": 450 }],
+    "layers": [
+      { "layerId": "g", "type": "layerGroupFactory", "title": "Group", "initialVisible": true, "options": {}, "layers": ["t"] },
+      { "layerId": "t", "type": "tileLayer", "title": "Tiles", "initialVisible": false, "urlTemplate": "https://tiles.example/{z}/{x}/{y}.png", "options": { "pane": "p1" } },
+      {
+        "layerId": "d", "type": "data", "title": "Data", "initialVisible": true, "options": { "adjustBounds": true },
+        "data": { "type": "inline", "format": "geojson", "data": { "type": "FeatureCollection", "features": [
+          { "type": "Feature", "properties": {}, "geometry": { "type": "Point", "coordinates": [13.4, 52.5] } },
+          { "type": "Feature", "properties": {}, "geometry": { "type": "Point", "coordinates": [11.5, 48.1] } }
+        ] } }
+      }
+    ],
+    "controls": [
+      { "controlId": "z", "type": "zoom", "options": {} },
+      { "controlId": "f", "type": "fullscreen", "options": {} }
+    ],
+    "bounds": { "adjustAfterLoad": true }
+  }
+}
