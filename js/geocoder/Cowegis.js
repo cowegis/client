@@ -30,7 +30,7 @@ function getJSON(url, params, callback) {
             // IE doesn't parse JSON responses even with responseType: 'json'.
             try {
                 message = JSON.parse(xmlHttp.response);
-            } catch (e) {
+            } catch {
                 // Not a JSON response
                 message = xmlHttp.response;
             }

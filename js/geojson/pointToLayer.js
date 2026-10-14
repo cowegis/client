@@ -6,7 +6,7 @@ import bindTooltipFromFeature from './bindTooltipFromFeature';
 
 export default function (feature, latlng, element) {
     let type   = 'marker';
-    let marker = null;
+    let marker;
     let options = {};
 
     if (feature.properties) {
