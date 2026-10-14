@@ -41,14 +41,20 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.18.2",
+    "@vitest/coverage-v8": "^5.0.4",
     "eslint": "^8.15.0",
     "eslint-import-resolver-typescript": "^2.7.1",
     "eslint-import-resolver-webpack": "^0.13.2",
     "eslint-plugin-html": "^6.2.0",
-    "eslint-plugin-import": "^2.26.0"
+    "eslint-plugin-import": "^2.26.0",
+    "happy-dom": "^21.0.1",
+    "vitest": "^5.0.4"
   },
   "scripts": {
     "lint": "eslint --ext .js js/",
-    "fix": "eslint --ext .js js/ --fix"
+    "fix": "eslint --ext .js js/ --fix",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "coverage": "vitest run --coverage"
   }
 }
