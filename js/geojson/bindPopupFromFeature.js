@@ -7,7 +7,7 @@ export default function (object, feature, element) {
 
     let options = feature.properties.popup.options;
     if (feature.properties.popup.presetId && element.config.map.presets.popups[feature.properties.popup.presetId]) {
-        options = Object.assign(element.config.map.presets.popups[feature.properties.popup.presetId].options, options);
+        options = Object.assign({}, element.config.map.presets.popups[feature.properties.popup.presetId].options, options);
     }
 
     object.bindPopup(feature.properties.popup.content, options);

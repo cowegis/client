@@ -30,7 +30,7 @@ export default function (feature, latlng, element) {
     if (feature.properties) {
         bindEvents(marker, feature.properties.events, element);
 
-        if (feature.properties.radius) {
+        if (feature.properties.radius && marker.setRadius) {
             marker.setRadius(feature.properties.radius);
         }
 
