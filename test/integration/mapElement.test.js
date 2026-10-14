@@ -120,6 +120,29 @@ describe('<cowegis-map>', () => {
         expect(first.element.map.getZoom()).toBe(8);
         expect(second.element.map.getZoom()).toBe(5);
     });
+
+    it('keeps layers and bounds of maps with the same layer ids apart', async () => {
+        stubContainerSize();
+        const config = (lng, lat) => minimalConfig({
+            layers: [
+                { layerId: 'g', type: 'layerGroupFactory', title: 'Group', initialVisible: true, options: {}, layers: ['d'] },
+                {
+                    layerId: 'd', type: 'data', title: 'Data', initialVisible: false, options: { adjustBounds: true },
+                    data: { type: 'inline', format: 'geojson', data: featureCollection(point(lng, lat)) },
+                },
+            ],
+            bounds: { adjustAfterLoad: true },
+        });
+        const first = renderMap(config(13.4, 52.5));
+        const second = renderMap(config(-74, 40.7));
+
+        await Promise.all([first.ready, second.ready]);
+
+        expect(first.element.layers.g.getLayers()).toEqual([first.element.layers.d]);
+        expect(second.element.layers.g.getLayers()).toEqual([second.element.layers.d]);
+        expect(first.element.map.getCenter().lat).toBeCloseTo(52.5, 1);
+        expect(second.element.map.getCenter().lat).toBeCloseTo(40.7, 1);
+    });
 });
 
 describe('<cowegis-editor>', () => {

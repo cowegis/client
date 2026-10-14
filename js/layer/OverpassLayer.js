@@ -92,6 +92,9 @@ export default leaflet.FeatureGroup.extend({
             }
 
             this._map.fire('dataload', {layer: this});
+        }.bind(this)).catch(function (error) {
+            console.error(error);
+            map.fire('dataload', {layer: this});
         }.bind(this));
     },
     /**

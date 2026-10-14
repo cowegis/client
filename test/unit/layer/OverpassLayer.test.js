@@ -107,6 +107,19 @@ describe('OverpassLayer', () => {
         expect(layer._layer.getLayers()).toHaveLength(0);
     });
 
+    it('finishes loading if the response cannot be processed', async () => {
+        // Overpass answers rate limited requests with an html page.
+        vi.stubGlobal('fetch', vi.fn(async () => ({ json: async () => { throw new SyntaxError('Unexpected token <'); } })));
+        const error = vi.spyOn(console, 'error').mockImplementation(() => {});
+        const element = createElement();
+        const loaded = dataloaded(element);
+
+        element.map.addLayer(new OverpassLayer({ query: 'node(BBOX);out;' }, element));
+        await loaded;
+
+        expect(error).toHaveBeenCalledWith(expect.any(SyntaxError));
+    });
+
     it('stops reloading on map moves after being removed', async () => {
         stubFetch();
         const element = createElement();
