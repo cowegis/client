@@ -1,5 +1,5 @@
-import 'leaflet.fullscreen';
+import { FullScreen } from 'leaflet.fullscreen';
 
 export default async function(config) {
-    return new L.Control.FullScreen(config.options);
+    return new FullScreen(config.options);
 }
