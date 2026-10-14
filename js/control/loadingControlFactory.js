@@ -1,3 +1,6 @@
+// Leaflet has to be loaded first, the plugin registers itself on the global L.
+import leaflet from '../leaflet';
+
 import 'leaflet-loading';
 
 export default async function(config, element) {
@@ -19,11 +22,11 @@ export default async function(config, element) {
             top: '50%'
         }
     }
-    if (config.options.spinjs && global.Spinner === undefined) {
+    if (config.options.spinjs && globalThis.Spinner === undefined) {
       await import('spin.js').then(
-          (module) => global.Spinner = module.Spinner
+          (module) => globalThis.Spinner = module.Spinner
       );
     }
 
-    return L.Control.loading(config.options);
+    return leaflet.Control.loading(config.options);
 }

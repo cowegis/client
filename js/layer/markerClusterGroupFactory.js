@@ -1,9 +1,12 @@
+// Leaflet has to be loaded first, the plugins register themselves on the global L.
+import leaflet from '../leaflet';
+
 import 'leaflet.markercluster';
 import 'leaflet.markercluster.layersupport';
 
 function collectLayers(element, layers, pending, layer) {
     layers.forEach(function (layerId) {
-        if (element.layers.hasOwnProperty(layerId)) {
+        if (Object.prototype.hasOwnProperty.call(element.layers, layerId)) {
             if (element.layers[layerId].cowegis.initialVisible) {
                 layer.addLayer(element.layers[layerId]);
             } else {
@@ -43,7 +46,7 @@ function registerCollectListener(element, layer, pending) {
 
 export default async function(config, element) {
     const pending = [];
-    const layer   = L.markerClusterGroup.layerSupport(config.options);
+    const layer   = leaflet.markerClusterGroup.layerSupport(config.options);
 
     collectLayers(element, config.layers, pending, layer);
     registerCollectListener(element, layer, pending);

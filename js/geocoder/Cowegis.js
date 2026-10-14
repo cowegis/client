@@ -1,4 +1,4 @@
-import {Util} from 'leaflet';
+import {latLng, latLngBounds, Util} from 'leaflet';
 import {geocoders} from 'leaflet-control-geocoder';
 
 function getParamString(obj, existingUrl, uppercase) {
@@ -62,8 +62,8 @@ export class Cowegis extends geocoders.Nominatim {
                     icon: data[i].icon,
                     name: data[i].display_name,
                     html: this.options.htmlTemplate ? this.options.htmlTemplate(data[i]) : undefined,
-                    bbox: L.latLngBounds([bbox[0], bbox[2]], [bbox[1], bbox[3]]),
-                    center: L.latLng(data[i].lat, data[i].lon),
+                    bbox: latLngBounds([bbox[0], bbox[2]], [bbox[1], bbox[3]]),
+                    center: latLng(data[i].lat, data[i].lon),
                     properties: data[i]
                 };
             }

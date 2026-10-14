@@ -1,10 +1,4 @@
-import {DivIcon, point as toPoint} from 'leaflet';
-
-const sizes = {
-    small: 0.7,
-    medium: 1,
-    large: 1.5,
-}
+import {DivIcon} from 'leaflet';
 
 export default DivIcon.extend({
     options: {

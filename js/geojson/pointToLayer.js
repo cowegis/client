@@ -1,4 +1,5 @@
 import bindEvents from '../factory/bindEvents';
+import leaflet from '../leaflet';
 
 import bindPopupFromFeature from './bindPopupFromFeature';
 import bindTooltipFromFeature from './bindTooltipFromFeature';
@@ -24,7 +25,7 @@ export default function (feature, latlng, element) {
     }
 
     // TODO: Support different marker types as circle marker etc.
-    marker = L[type](latlng, options);
+    marker = leaflet[type](latlng, options);
 
     if (feature.properties) {
         bindEvents(marker, feature.properties.events, element);
@@ -40,4 +41,4 @@ export default function (feature, latlng, element) {
     //this.fire('point:added', {marker: marker, feature: feature, latlng: latlng, type: type});
 
     return marker;
-};
+}

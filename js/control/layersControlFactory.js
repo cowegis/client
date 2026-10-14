@@ -6,7 +6,7 @@ function defaultNameCallback(layer) {
 
 function collectLayers(element, layers, state, nameCallback) {
     layers.forEach(function (layerId) {
-        if (element.layers.hasOwnProperty(layerId)) {
+        if (Object.prototype.hasOwnProperty.call(element.layers, layerId)) {
             state.available[nameCallback(element.layers[layerId])] = element.layers[layerId];
         } else {
             state.pending.push(layerId);

@@ -1,9 +1,8 @@
 import osmtogeojson from 'osmtogeojson';
 
+import {mapFactory} from '../factory';
+import {determineListener} from '../factory/bindEvents';
 import leaflet from '../leaflet';
-import {mapFactory} from "../factory";
-import {determineListener} from "../factory/bindEvents";
-import pointToLayer from "../geojson/pointToLayer";
 
 /**
  * Get the bounds as overpass bbox string.

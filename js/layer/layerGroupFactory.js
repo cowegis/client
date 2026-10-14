@@ -2,7 +2,7 @@ import leaflet from '../leaflet';
 
 function collectLayers(element, layers, state) {
     layers.forEach(function (layerId) {
-        if (element.layers.hasOwnProperty(layerId)) {
+        if (Object.prototype.hasOwnProperty.call(element.layers, layerId)) {
             state.available.push(element.layers[layerId]);
         } else {
             state.pending.push(layerId);

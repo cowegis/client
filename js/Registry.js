@@ -9,7 +9,7 @@ class Registry {
     }
 
     async get(name) {
-        if (this.factories.hasOwnProperty(name)) {
+        if (Object.prototype.hasOwnProperty.call(this.factories, name)) {
             return this.factories[name];
         }
 

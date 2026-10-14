@@ -38,20 +38,22 @@ export default async function (config, element) {
             data = config.data.data;
             break;
 
-        case 'uri':
+        case 'uri': {
             response = await fetch(config.data.uri);
             const json = await response.json();
             await preloadAssets(json.assets, element);
             data = json.data;
             break;
+        }
 
-        case 'external':
+        case 'external': {
             response = await fetch(config.data.uri);
             const blob = await response.blob();
             const content = await blob.text();
             data = content;
 
             break;
+        }
 
         default:
             throw new Error(`Unknown data type "${config.data.type}"`);
