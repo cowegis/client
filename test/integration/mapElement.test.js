@@ -1,5 +1,6 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 import { describe, expect, it, vi } from 'vitest';
 
@@ -157,21 +158,41 @@ describe('<cowegis-editor>', () => {
     });
 });
 
-const backendFixtures = readdirSync(resolve(fixtures, 'backend')).filter((file) => file.endsWith('.json'));
+// Each directory contains a map config exported from the backend (map.json), the recorded responses of the data
+// requests (responses.json, keyed by uri) and optionally the exported callbacks module (callbacks.js).
+const backendFixtures = readdirSync(resolve(fixtures, 'backend'), { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name);
 
 describe.runIf(backendFixtures.length > 0)('backend map configs', () => {
-    it.each(backendFixtures)('%s', async (file) => {
-        const config = loadFixture('backend/' + file);
-        vi.spyOn(AssetsLoader.prototype, 'load').mockResolvedValue(undefined);
-        vi.stubGlobal('fetch', vi.fn(async () => ({
-            json: async () => ({ assets: [], data: featureCollection(point(13.4, 52.5)) }),
-            blob: async () => ({ text: async () => '{"type":"FeatureCollection","features":[]}' }),
-        })));
+    it.each(backendFixtures)('%s', async (name) => {
+        const directory = resolve(fixtures, 'backend', name);
+        const config = loadFixture(`backend/${name}/map.json`);
+        const responses = loadFixture(`backend/${name}/responses.json`);
+        const load = AssetsLoader.prototype.load;
+        vi.spyOn(AssetsLoader.prototype, 'load').mockImplementation(function (asset) {
+            if (asset.type === 'callbacks') {
+                return load.call(this, { ...asset, url: pathToFileURL(resolve(directory, 'callbacks.js')).href });
+            }
+
+            // Stylesheets and scripts cannot be loaded without a browser.
+            return Promise.resolve();
+        });
+        vi.stubGlobal('fetch', vi.fn(async (uri) => {
+            if (!Object.prototype.hasOwnProperty.call(responses, uri)) {
+                throw new Error(`No recorded response for "${uri}"`);
+            }
+
+            return { json: async () => responses[uri] };
+        }));
         const { element, ready } = renderMap(config);
 
         await ready;
 
         expect(Object.keys(element.layers).sort()).toEqual(config.map.layers.map((layer) => layer.layerId).sort());
         expect(Object.keys(element.controls).sort()).toEqual(config.map.controls.map((control) => control.controlId).sort());
+        config.map.layers
+            .filter((layer) => layer.type === 'data')
+            .forEach((layer) => expect(element.layers[layer.layerId].getLayers().length, layer.title).toBeGreaterThan(0));
     });
 });

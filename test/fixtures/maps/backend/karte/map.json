@@ -1,0 +1,177 @@
+{
+  "map": {
+    "definitionId": "2",
+    "elementId": "karte",
+    "title": "Karte",
+    "options": {
+      "touchZoom": true,
+      "keyboardPanOffset": 80,
+      "keyboardZoomOffset": 1
+    },
+    "layers": [
+      {
+        "layerId": "1",
+        "name": "open_street_map",
+        "title": "Open Street Map",
+        "initialVisible": true,
+        "options": {},
+        "events": [],
+        "type": "provider",
+        "provider": "OpenStreetMap",
+        "variant": "DE"
+      },
+      {
+        "layerId": "3",
+        "name": "markers",
+        "title": "Markers",
+        "initialVisible": true,
+        "options": {
+          "adjustBounds": true
+        },
+        "events": [],
+        "type": "data",
+        "data": {
+          "type": "uri",
+          "format": "geojson",
+          "uri": "/cowegis/api/map/2/markers/3?_locale=en"
+        }
+      },
+      {
+        "layerId": "4",
+        "name": "overpass",
+        "title": "Overpass",
+        "initialVisible": false,
+        "options": {
+          "query": "node[\"amenity\"=\"drinking_water\"](BBOX);\nout;",
+          "amenityIcons": {
+            "drinking_water": 4
+          },
+          "adjustBounds": false
+        },
+        "events": [],
+        "type": "overpass"
+      },
+      {
+        "layerId": "5",
+        "name": "vektoren",
+        "title": "Vektoren",
+        "initialVisible": true,
+        "options": {
+          "onEachFeature": {
+            "type": "reference",
+            "namespace": [
+              "map_2"
+            ],
+            "reference": "callback_1"
+          }
+        },
+        "events": [],
+        "type": "data",
+        "data": {
+          "type": "uri",
+          "format": "geojson",
+          "uri": "/cowegis/api/map/2/vectors/5?_locale=en"
+        }
+      }
+    ],
+    "controls": [
+      {
+        "controlId": "1",
+        "name": "lade_indikator",
+        "type": "loading",
+        "options": {
+          "delayIndicator": 1
+        }
+      }
+    ],
+    "panes": [],
+    "view": {
+      "center": null,
+      "zoom": 12,
+      "options": {
+        "boundsPadding": [
+          100,
+          100
+        ]
+      }
+    },
+    "locate": false,
+    "bounds": {
+      "adjustAfterLoad": true,
+      "adjustAfterDeferred": true,
+      "padding": [
+        100,
+        100
+      ]
+    },
+    "presets": {
+      "icons": {
+        "1": {
+          "iconId": "1",
+          "type": "image",
+          "options": {
+            "className": "foobar",
+            "iconSize": [
+              20,
+              40
+            ],
+            "iconUrl": "files/Bilder/FullLogo.png",
+            "iconAnchor": [
+              10,
+              40
+            ],
+            "popupAnchor": [
+              0,
+              -40
+            ]
+          }
+        },
+        "3": {
+          "iconId": "3",
+          "type": "fontAwesome",
+          "options": {
+            "bgColor": "#00bbff",
+            "color": "#fafcfc",
+            "iconSet": "regular",
+            "icon": "envelope",
+            "iconSize": [
+              50,
+              60
+            ]
+          }
+        },
+        "4": {
+          "iconId": "4",
+          "type": "fontAwesome",
+          "options": {
+            "className": "foobaR",
+            "icon": "envelope"
+          }
+        }
+      },
+      "popups": {},
+      "styles": {},
+      "tooltips": {
+        "1": {
+          "presetId": "1",
+          "options": {
+            "attribution": "",
+            "opacity": 1
+          }
+        }
+      }
+    },
+    "events": []
+  },
+  "assets": [
+    {
+      "type": "stylesheet",
+      "url": "bundles/cowegisclient/css/cowegis.css"
+    },
+    {
+      "type": "callbacks",
+      "url": "/cowegis/js/callbacks/2.js?es5=0",
+      "identifier": "map_2"
+    }
+  ]
+}

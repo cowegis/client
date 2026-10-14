@@ -1,0 +1,89 @@
+{
+  "/cowegis/api/map/2/markers/3?_locale=en": {
+    "data": {
+      "type": "FeatureCollection",
+      "features": [
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              11.6399609,
+              52.1315889
+            ]
+          },
+          "properties": {
+            "markerId": "2",
+            "title": "",
+            "name": "test",
+            "properties": {},
+            "options": {
+              "attribution": "Meine Markers GmbH"
+            },
+            "popup": {
+              "content": "<p>Dies ist ein Test 2026-10-14</p>",
+              "presetId": null,
+              "options": {},
+              "events": []
+            },
+            "tooltip": {
+              "content": "<p>Mein Tooltip 2026-10-14</p>",
+              "coordinates": null,
+              "options": {},
+              "presetId": null,
+              "events": []
+            },
+            "icon": "4",
+            "marker-symbol": "table",
+            "marker-size": "medium",
+            "marker-color": "#80c22a",
+            "symbol-color": "#ffffff"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              11.68369174,
+              52.10774402
+            ]
+          },
+          "properties": {
+            "markerId": "4",
+            "title": "Test 2",
+            "name": "test_2",
+            "properties": {},
+            "options": {
+              "attribution": "Meine Markers GmbH",
+              "title": "Foo Bar"
+            },
+            "popup": {
+              "content": "<p>Dies ist ein Test 2026-10-14</p>",
+              "presetId": null,
+              "options": {},
+              "events": []
+            },
+            "tooltip": {
+              "content": "<p>Mein Tooltip 2026-10-14</p>",
+              "coordinates": null,
+              "options": {},
+              "presetId": null,
+              "events": []
+            },
+            "icon": "3",
+            "marker-symbol": "envelope",
+            "marker-size": "medium",
+            "marker-color": "#00bbff",
+            "symbol-color": "#fafcfc"
+          }
+        }
+      ]
+    },
+    "assets": []
+  },
+  "/cowegis/api/map/2/vectors/5?_locale=en": {
+    "data": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"properties\": {\n        \"fill\": \"#ff6000\",\n        \"fill-opacity\": 0.2,\n        \"stroke\": \"#ff6000\",\n        \"stroke-width\": 2,\n        \"stroke-opacity\": 1,\n        \"GEBIETSNAM\": \"Wohngebiet Köpenick Nord\"\n      },\n      \"geometry\": {\n        \"type\": \"MultiPolygon\",\n        \"coordinates\": [\n          [\n            [\n              [\n                13.576807,\n                52.459664\n              ],\n              [\n                13.578224,\n                52.459631\n              ],\n              [\n                13.578132,\n                52.459949\n              ],\n              [\n                13.579476,\n                52.460583\n              ],\n              [\n                13.580799,\n                52.460054\n              ],\n              [\n                13.582374,\n                52.461725\n              ],\n              [\n                13.581166,\n                52.462253\n              ],\n              [\n                13.582094,\n                52.46314\n              ],\n              [\n                13.574739,\n                52.46646\n              ],\n              [\n                13.574343,\n                52.466375\n              ],\n              [\n                13.574223,\n                52.466589\n              ],\n              [\n                13.572446,\n                52.466364\n              ],\n              [\n                13.572605,\n                52.466053\n              ],\n              [\n                13.573853,\n                52.463473\n              ],\n              [\n                13.576807,\n                52.459664\n              ]\n            ]\n          ]\n        ]\n      }\n    },\n    {\n      \"type\": \"Feature\",\n      \"properties\": {\n        \"fill\": \"#ff6000\",\n        \"fill-opacity\": 0.2,\n        \"stroke\": \"#ff6000\",\n        \"stroke-width\": 2,\n        \"stroke-opacity\": 1,\n        \"GEBIETSNAM\": \"Wohngebiet Köllnische Vorstadt\"\n      },\n      \"geometry\": {\n        \"type\": \"MultiPolygon\",\n        \"coordinates\": [\n          [\n            [\n              [\n                13.562555,\n                52.438562\n              ],\n              [\n                13.563665,\n                52.438786\n              ],\n              [\n                13.564058,\n                52.43822\n              ],\n              [\n                13.564645,\n                52.438601\n              ],\n              [\n                13.564221,\n                52.43892\n              ],\n              [\n                13.56339,\n                52.440402\n              ],\n              [\n                13.564203,\n                52.440592\n              ],\n              [\n                13.562903,\n                52.442844\n              ],\n              [\n                13.562526,\n                52.443477\n              ],\n              [\n                13.561777,\n                52.443773\n              ],\n              [\n                13.562976,\n                52.445538\n              ],\n              [\n                13.562666,\n                52.4458\n              ],\n              [\n                13.560762,\n                52.443493\n              ],\n              [\n                13.560562,\n                52.442738\n              ],\n              [\n                13.560401,\n                52.442289\n              ],\n              [\n                13.561863,\n                52.439727\n              ],\n              [\n                13.562555,\n                52.438562\n              ]\n            ]\n          ]\n        ]\n      }\n    },\n    {\n      \"type\": \"Feature\",\n      \"properties\": {\n        \"fill\": \"#ff6000\",\n        \"fill-opacity\": 0.2,\n        \"stroke\": \"#ff6000\",\n        \"stroke-width\": 2,\n        \"stroke-opacity\": 1,\n        \"GEBIETSNAM\": \"Wohngebiet Grünau\"\n      },\n      \"geometry\": {\n        \"type\": \"MultiPolygon\",\n        \"coordinates\": [\n          [\n            [\n              [\n                13.571794,\n                52.424545\n              ],\n              [\n                13.571546,\n                52.423527\n              ],\n              [\n                13.573488,\n                52.42154\n              ],\n              [\n                13.574841,\n                52.422092\n              ],\n              [\n                13.575853,\n                52.420891\n              ],\n              [\n                13.577278,\n                52.421385\n              ],\n              [\n                13.577161,\n                52.421563\n              ],\n              [\n                13.578524,\n                52.422135\n              ],\n              [\n                13.578294,\n                52.422444\n              ],\n              [\n                13.579114,\n                52.422856\n              ],\n              [\n                13.578431,\n                52.423515\n              ],\n              [\n                13.576389,\n                52.422696\n              ],\n              [\n                13.574713,\n                52.425197\n              ],\n              [\n                13.571794,\n                52.424545\n              ]\n            ]\n          ]\n        ]\n      }\n    }\n  ]\n}",
+    "assets": []
+  }
+}
