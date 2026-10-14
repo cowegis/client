@@ -11,11 +11,6 @@ function boundsListener(layer, map) {
     }
 
     const listener = function (event) {
-        // Only layers shown on the map contribute to the bounds.
-        if (!map.hasLayer(layer)) {
-            return;
-        }
-
         layer.eachLayer(function (child) {
             if (child.getBounds) {
                 const source = child.getBounds();
@@ -29,7 +24,13 @@ function boundsListener(layer, map) {
         });
     };
 
-    map.on('cowegis:calculate-bounds', listener);
+    // Only layers shown on the map contribute to the bounds.
+    layer.on('add', function () {
+        map.on('cowegis:calculate-bounds', listener);
+    });
+    layer.on('remove', function () {
+        map.off('cowegis:calculate-bounds', listener);
+    });
 }
 
 export default async function (config, element) {
